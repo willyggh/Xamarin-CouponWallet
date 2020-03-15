@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CouponWallet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -13,6 +14,8 @@ namespace CouponWallet
 
         public MainPage()
         {
+            BindingContext = new MainPageViewModel();
+
             BackgroundColor = Color.PowderBlue;
 
             infoLabel = new Label
@@ -20,6 +23,7 @@ namespace CouponWallet
                 FontSize = 20,
                 Margin = new Thickness(10)
             };
+            infoLabel.SetBinding(Label.TextProperty, "LabelText");
 
             input = new Entry
             {
@@ -27,6 +31,7 @@ namespace CouponWallet
                 BackgroundColor = Color.White,
                 Margin = new Thickness(10)
             };
+            input.SetBinding(Entry.TextProperty, "InputText");
 
             searchButton = new Button
             {
@@ -36,7 +41,7 @@ namespace CouponWallet
                 Margin = new Thickness(10),
                 CornerRadius = 5
             };
-            searchButton.Clicked += SearchButton_Clicked;
+            searchButton.SetBinding(Button.CommandProperty, "SearchCommand");
 
             var grid = new Grid
             {
@@ -57,15 +62,6 @@ namespace CouponWallet
             grid.Children.Add(searchButton, 0, 2);
 
             Content = grid;
-        }
-
-        private void SearchButton_Clicked(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(input.Text))
-            {
-                infoLabel.Text = input.Text;
-                input.Text = string.Empty; 
-            }
-        }
+        }        
     }
 }
