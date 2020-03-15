@@ -17,13 +17,15 @@ namespace CouponWallet
 
             infoLabel = new Label
             {
-                FontSize = 20
+                FontSize = 20,
+                Margin = new Thickness(10)
             };
 
             input = new Entry
             {
                 Placeholder = "Enter Text",
-                BackgroundColor = Color.White
+                BackgroundColor = Color.White,
+                Margin = new Thickness(10)
             };
 
             searchButton = new Button
@@ -31,6 +33,8 @@ namespace CouponWallet
                 Text = "Search",
                 TextColor = Color.White,
                 BackgroundColor = Color.Green,
+                Margin = new Thickness(10),
+                CornerRadius = 5
             };
             searchButton.Clicked += SearchButton_Clicked;
 
