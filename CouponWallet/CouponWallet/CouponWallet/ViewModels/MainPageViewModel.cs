@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
+using ZXing.Net.Mobile.Forms;
 
 namespace CouponWallet.ViewModels
 {
@@ -11,14 +12,31 @@ namespace CouponWallet.ViewModels
     {
         public MainPageViewModel()
         {
-            SearchCommand = new Command(() => 
+            SearchCommand = new Command(async () => 
             {
-                var barCode = new BarcodeModel
+                //var barCode = new BarcodeModel
+                //{
+                //    Barcode = InputText
+                //};
+                //LabelText = barCode.Barcode;
+                //InputText = string.Empty;
+
+                ZXingScannerPage scanPage;
+
+                scanPage = new ZXingScannerPage();
+                scanPage.OnScanResult += (result) =>
                 {
-                    Barcode = InputText
+                    scanPage.IsScanning = false;
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Application.Current.MainPage.Navigation.PopAsync();
+                        await Application.Current.MainPage.DisplayAlert("Scanned Barcode", result.Text, "OK");
+                    });
                 };
-                LabelText = barCode.Barcode;
-                InputText = string.Empty;
+
+                await Application.Current.MainPage.Navigation.PushAsync(scanPage);
+
             });
         }
 

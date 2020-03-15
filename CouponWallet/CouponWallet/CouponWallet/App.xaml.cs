@@ -10,7 +10,11 @@ namespace CouponWallet
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage())
+            {
+                BarBackgroundColor = Color.CadetBlue,
+                BarTextColor = Color.White
+            };
         }
 
         protected override void OnStart()
