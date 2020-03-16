@@ -12,30 +12,30 @@ namespace CouponWallet.ViewModels
     {
         public MainPageViewModel()
         {
-            SearchCommand = new Command(async () => 
+            SearchCommand = new Command(() => 
             {
-                //var barCode = new BarcodeModel
-                //{
-                //    Barcode = InputText
-                //};
-                //LabelText = barCode.Barcode;
-                //InputText = string.Empty;
-
-                ZXingScannerPage scanPage;
-
-                scanPage = new ZXingScannerPage();
-                scanPage.OnScanResult += (result) =>
+                var barCode = new BarcodeModel
                 {
-                    scanPage.IsScanning = false;
-
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        await Application.Current.MainPage.Navigation.PopAsync();
-                        await Application.Current.MainPage.DisplayAlert("Scanned Barcode", result.Text, "OK");
-                    });
+                    Barcode = InputText
                 };
+                LabelText = barCode.Barcode;
+                InputText = string.Empty;
 
-                await Application.Current.MainPage.Navigation.PushAsync(scanPage);
+                //ZXingScannerPage scanPage;
+
+                //scanPage = new ZXingScannerPage();
+                //scanPage.OnScanResult += (result) =>
+                //{
+                //    scanPage.IsScanning = false;
+
+                //    Device.BeginInvokeOnMainThread(async () =>
+                //    {
+                //        await Application.Current.MainPage.Navigation.PopAsync();
+                //        await Application.Current.MainPage.DisplayAlert("Scanned Barcode", result.Text, "OK");
+                //    });
+                //};
+
+                //await Application.Current.MainPage.Navigation.PushAsync(scanPage);
 
             });
         }

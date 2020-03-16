@@ -15,8 +15,8 @@ namespace CouponWallet.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             //Initialie Zxing.Net.Mobile
-            Xamarin.Essentials.Platform.Init(Application);
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            //Xamarin.Essentials.Platform.Init(Application);
+            //ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -29,7 +29,7 @@ namespace CouponWallet.Droid
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
